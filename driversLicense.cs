@@ -1,58 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Assessment2
+﻿namespace Assessment2
 {
-    public class driversLicense
+    internal class Program
     {
 
-        public void LicensePlate(string licenseNumber, int groupLength)
+        public void driversLicense(string name , int noOfAgents , string waitingMembers)
         {
-            string newLicense="";   
-            int i = 0;
-            while (i<licenseNumber.Length)
+            string[] namesWaitingMembers = (waitingMembers+" "+name).Split(' ') ;
+            Array.Sort(namesWaitingMembers);
+            int noOfPeople = namesWaitingMembers.Length;
+            int time = 0;
+            bool breakLoop = false;
+           for(int i=0;i<noOfPeople;i+=noOfAgents)
             {
-                string temp = "";
-                while (temp.Length<groupLength && i<licenseNumber.Length)
+
+                 time += 20;
+                 for(int j=i;j<i+noOfAgents;j++)
                 {
-                    
-                    if (!licenseNumber[i].Equals('-'))
+                    if (namesWaitingMembers[j] == name)
                     {
-                        
-                        temp += licenseNumber[i];
-                        i++;
-                    }
-                    else 
-                    {
-                        i++;
+                        breakLoop = true;
+                        break;
                     }
                 }
-                newLicense = newLicense + temp +'-';
+                if (breakLoop) break;
             }
-            newLicense = newLicense.Substring(0, newLicense.Length - 1);
-            Console.WriteLine("new license:  "+ newLicense.ToUpper());
-
-
+            Console.WriteLine($"Total time taken by {name}: {time}");
         }
+
 
         static void Main(string[] args)
         {
-            driversLicense p = new();
-
-            Console.WriteLine("Enter your License plate groupLength");
-            string licensePlateNumber = Console.ReadLine();
-            Console.WriteLine("Enter grouping groupLength");
-            int groupingNumber = Convert.ToInt32(Console.ReadLine());
-            p.LicensePlate(licensePlateNumber, groupingNumber);
-            p.LicensePlate("5F3Z-2e-9-w", 4);
-            p.LicensePlate("2-5g-3-J", 2);
-
-            p.LicensePlate("2-4A0r7-4k", 3);
-
-            p.LicensePlate("nlj-206-fv", 3);
+            Program p = new();
+            Console.WriteLine("Enter your name");
+            string yourName = new string(Console.ReadLine());
+            Console.WriteLine("Enter no of agents");
+            int noOfAgents = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter others names separated by space");
+            string others = Console.ReadLine();
+            p.driversLicense(yourName, noOfAgents, others);
+            p.driversLicense("Eric", 2, "Adam Caroline Rebecca Frank");
+            p.driversLicense("Zebediah", 1, "Bob Jim Becky Pat");
+            p.driversLicense("Aaron", 3, "Jane Max Olivia Sam");
         }
     }
 }
