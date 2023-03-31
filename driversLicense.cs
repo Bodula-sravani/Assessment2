@@ -33,7 +33,7 @@ namespace Assessment2
                 newLicense = newLicense + temp +'-';
             }
             newLicense = newLicense.Substring(0, newLicense.Length - 1);
-            Console.WriteLine("new license:  "+ newLicense);
+            Console.WriteLine("new license:  "+ newLicense.ToUpper());
 
 
         }
