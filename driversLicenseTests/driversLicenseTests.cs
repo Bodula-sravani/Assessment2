@@ -12,7 +12,17 @@ namespace License.Tests
     [TestClass()]
     public class LicenseTests
     {
-        
+        [TestMethod()]
+        public void driversLicenseTest()
+        {
+            driversLicenseClass p = new();
+            int time = p.driversLicense("Eric", 2, "Adam Caroline Rebecca Frank");
+            if (time == 40)
+            {
+                Assert.IsTrue(true);
+            }
+            else { Assert.Fail(); }
+        }
         [TestMethod()]
         public void licensePlateTests()
         {
