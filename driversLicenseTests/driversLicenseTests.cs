@@ -12,12 +12,13 @@ namespace License.Tests
     [TestClass()]
     public class LicenseTests
     {
+        
         [TestMethod()]
-        public void driversLicenseTest()
+        public void licensePlateTests()
         {
-            driversLicenseClass p = new();
-            int time = p.driversLicense("Eric", 2, "Adam Caroline Rebecca Frank");
-            if (time == 40)
+            LicensePlateClass l = new();
+            string result = l.LicensePlate("5F3Z-2e-9-w", 4);
+            if(result.Equals("5F3Z-2E9W"))
             {
                 Assert.IsTrue(true);
             }
